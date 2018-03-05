@@ -51,6 +51,7 @@
     [self.view addSubview:table];
     self.table = table;
     
+    // block添加数据
     __block typeof(self) bself = self;
     self.svc.change = ^(NSString * MM){
         
@@ -82,6 +83,14 @@
     }
     cell.textLabel.text = self.arrM[indexPath.row];
     return  cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.000001;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc] init];
 }
 
 - (void)add{

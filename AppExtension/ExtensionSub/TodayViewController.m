@@ -30,7 +30,7 @@
     NSArray *arr = [userDefault valueForKey:@"shareData"];
     self.arrM = [arr mutableCopy];
     
-    UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(0, -20, WIDTH, HEIGHT) style:UITableViewStyleGrouped];
+    UITableView *table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, WIDTH, HEIGHT) style:UITableViewStyleGrouped];
     table.delegate = self;
     table.dataSource = self;
     table.rowHeight = 44;
@@ -60,6 +60,19 @@
     }
     cell.textLabel.text = self.arrM[indexPath.row];
     return  cell;
+}
+
+// 点击cell打开主程序
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.extensionContext openURL:[NSURL URLWithString:@"wocao://home"] completionHandler:nil];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.000001;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return [[UIView alloc] init];
 }
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult))completionHandler {
