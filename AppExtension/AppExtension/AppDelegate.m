@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "SecondVC.h"
 
 @interface AppDelegate ()
 
@@ -56,6 +57,16 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    
+    if ([url.absoluteString hasPrefix:@"wocao://"]) {
+        // 判断，如果是add就跳转到添加数据的控制器（第二个控制器）
+        if ([url.absoluteString hasSuffix:@"add"]) {
+            ViewController *rootVC = [UIApplication sharedApplication].keyWindow.rootViewController.childViewControllers.firstObject;
+            SecondVC *secVC = rootVC.svc;
+            [rootVC.navigationController pushViewController:secVC animated:YES];
+        }
+    }
+    
     return YES;
 }
 

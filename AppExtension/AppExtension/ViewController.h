@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SecondVC.h"
 @interface ViewController : UIViewController
 
-
+@property (nonatomic, strong) SecondVC *svc;
 @end
 
